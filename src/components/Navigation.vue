@@ -23,7 +23,7 @@ export default {
   data() {
     return {
       menuItems: [],
-      auths: ["개발자"],
+      auths: ["운영자"],
       currentMenu: "",
     };
   },
@@ -36,19 +36,20 @@ export default {
   },
   methods: {
     filterAccessibleMenus(menuItems) {
-      return menuItems.map((item) => {
-        if (!item.allow || !this.checkAllowance(item.allow)) return false;
+      return menuItems.reduce((acc, item) => {
+        if (!item.allow || !this.checkAuthority(item.allow)) return acc;
         let allowedSubMenus;
         if (item.children) {
           allowedSubMenus = item.children.filter((child) => {
             if (!child.allow) return true;
-            return this.checkAllowance(child.allow);
+            return this.checkAuthority(child.allow);
           });
         }
-        return { ...item, children: allowedSubMenus };
-      });
+        acc.push({ ...item, children: allowedSubMenus || [] });
+        return acc;
+      }, []);
     },
-    checkAllowance(allowList) {
+    checkAuthority(allowList) {
       return allowList.some((allow) => this.auths.indexOf(allow) > -1);
     },
     setCurrentMenu(selectedMenu) {
