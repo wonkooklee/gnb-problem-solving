@@ -30,8 +30,10 @@ export default {
   computed: {
     currentSubMenus: function () {
       if (!this.menuItems.length) return [];
-      return this.menuItems.find((item) => item.id === this.currentMenu)
-        .children;
+      return this.menuItems.find((item) => {
+        if (!item.children) return [];
+        return item.id === this.currentMenu;
+      }).children;
     },
   },
   methods: {
