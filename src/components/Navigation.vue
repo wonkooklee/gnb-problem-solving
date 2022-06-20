@@ -24,7 +24,7 @@ export default {
     return {
       menuItems: [],
       currentSubMenus: [],
-      auths: ["디자이너"],
+      auths: ["개발자"],
       currentMenu: "",
     };
   },
