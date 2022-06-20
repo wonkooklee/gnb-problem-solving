@@ -8,7 +8,7 @@
         <button @click="setCurrentMenu(menu.id)">{{ menu.title }}</button>
       </li>
     </ul>
-    <ul>
+    <ul v-if="currentSubMenus && currentSubMenus.length">
       <li v-for="(subMenu, idx) in currentSubMenus" :key="idx">
         <button>{{ subMenu.title }}</button>
       </li>
@@ -24,17 +24,19 @@ export default {
     return {
       menuItems: [],
       currentSubMenus: [],
-      auths: ["운영자"],
+      auths: ["디자이너"],
       currentMenu: "",
     };
   },
   created() {
     this.menuItems = this.filterAccessibleMenus(navigation);
-    this.currentMenu = this.menuItems[0].id;
+    if (this.menuItems.length) {
+      this.currentMenu = this.menuItems[0].id;
+    }
   },
   watch: {
     currentMenu: function (newVal) {
-      if (!this.menuItems) return;
+      if (!this.menuItems.length) return;
       this.currentSubMenus = this.menuItems.find(
         (item) => item.id === newVal
       ).children;
@@ -79,6 +81,10 @@ nav {
       font-size: 36px;
       color: #fff;
     }
+  }
+
+  .unauthorized {
+    color: #fff;
   }
 
   ul {
