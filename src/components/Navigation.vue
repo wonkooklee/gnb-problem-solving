@@ -1,7 +1,7 @@
 <template>
   <nav>
     <div>
-      <h2>Authorized GNB</h2>
+      <h2>{{ currentCategoryTitle }}</h2>
     </div>
     <ul>
       <li v-for="(menu, idx) in menuItems" :key="idx">
@@ -25,6 +25,7 @@ export default {
       menuItems: [],
       auths: ["운영자"],
       currentMenu: "",
+      currentCategoryTitle: "",
     };
   },
   computed: {
@@ -32,6 +33,7 @@ export default {
       if (!this.menuItems.length) return [];
       return this.menuItems.find((item) => {
         if (!item.children) return [];
+        this.currentCategoryTitle = item.title;
         return item.id === this.currentMenu;
       }).children;
     },
