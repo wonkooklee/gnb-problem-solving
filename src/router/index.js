@@ -1,14 +1,14 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import BoardA from "../components/BoardA.vue";
+import BoardContainer from "../components/BoardContainer.vue";
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: "/",
-    name: "boardA",
-    component: BoardA,
+    name: "Home",
+    component: BoardContainer,
   },
 ];
 

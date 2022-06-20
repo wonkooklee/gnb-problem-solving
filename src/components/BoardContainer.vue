@@ -1,12 +1,12 @@
 <template>
   <div class="board">
-    <h1>1번 게시판입니다</h1>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
 export default {
-  name: "BoardA",
+  name: "BoardC",
 };
 </script>
 

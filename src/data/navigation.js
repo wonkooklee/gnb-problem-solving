@@ -1,5 +1,6 @@
 export default [
   {
+    id: "community",
     title: "커뮤니티",
     route: "",
     children: [
@@ -31,7 +32,7 @@ export default [
             boardId: "KMSForest",
           },
         },
-        allow: ["관리자", "운영자", "개발자", "디자이너"],
+        allow: ["관리자", "운영자", "개발자"],
       },
       {
         title: "자유게시판",
@@ -69,6 +70,44 @@ export default [
           },
         },
         allow: ["관리자", "운영자", "개발자", "디자이너", "기획자"],
+      },
+    ],
+    allow: ["관리자", "운영자", "개발자", "디자이너", "기획자"],
+  },
+  {
+    id: "contents",
+    title: "컨텐츠",
+    route: "",
+    children: [
+      {
+        title: "강의",
+        route: {
+          name: "BoardsBoard",
+          params: {
+            boardId: "KMDForest",
+          },
+        },
+        allow: ["관리자", "운영자", "개발자"],
+      },
+      {
+        title: "코드리뷰",
+        route: {
+          name: "BoardsBoard",
+          params: {
+            boardId: "KMUForest",
+          },
+        },
+        allow: ["관리자", "운영자", "디자이너"],
+      },
+      {
+        title: "디자인리뷰",
+        route: {
+          name: "BoardsBoard",
+          params: {
+            boardId: "KMSForest",
+          },
+        },
+        allow: ["관리자", "운영자", "개발자", "디자이너"],
       },
     ],
     allow: ["관리자", "운영자", "개발자", "디자이너", "기획자"],
