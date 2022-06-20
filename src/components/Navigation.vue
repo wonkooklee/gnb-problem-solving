@@ -23,23 +23,15 @@ export default {
   data() {
     return {
       menuItems: [],
-      currentSubMenus: [],
       auths: ["개발자"],
       currentMenu: "",
     };
   },
-  created() {
-    this.menuItems = this.filterAccessibleMenus(navigation);
-    if (this.menuItems.length) {
-      this.currentMenu = this.menuItems[0].id;
-    }
-  },
-  watch: {
-    currentMenu: function (newVal) {
-      if (!this.menuItems.length) return;
-      this.currentSubMenus = this.menuItems.find(
-        (item) => item.id === newVal
-      ).children;
+  computed: {
+    currentSubMenus: function () {
+      if (!this.menuItems.length) return [];
+      return this.menuItems.find((item) => item.id === this.currentMenu)
+        .children;
     },
   },
   methods: {
@@ -62,6 +54,12 @@ export default {
     setCurrentMenu(selectedMenu) {
       this.currentMenu = selectedMenu;
     },
+  },
+  created() {
+    this.menuItems = this.filterAccessibleMenus(navigation);
+    if (this.menuItems.length) {
+      this.currentMenu = this.menuItems[0].id;
+    }
   },
 };
 </script>

@@ -118,4 +118,10 @@ export default [
     route: "",
     allow: ["관리자", "운영자", "개발자", "디자이너", "기획자"],
   },
+  {
+    id: "admin",
+    title: "어드민",
+    route: "",
+    allow: ["관리자", "운영자"],
+  },
 ];
