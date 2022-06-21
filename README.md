@@ -43,4 +43,47 @@
         },
       },
       allow: ["관리자", "운영자", "개발자"],
+```  
+<br>
+
+## 권한별 View
+
+### 개발자 Role
+![스크린샷 2022-06-22 오전 12 36 55](https://user-images.githubusercontent.com/61101022/174840448-0d1452d1-afe3-4799-805d-ec179102dc88.png)
+
+### 디자이너 Role
+![스크린샷 2022-06-22 오전 12 37 04](https://user-images.githubusercontent.com/61101022/174840558-cd38e201-f0da-48cc-9ca8-543d91d4511d.png)
+
+### 운영자 Role
+![스크린샷 2022-06-22 오전 12 37 10](https://user-images.githubusercontent.com/61101022/174840589-fd97fd3c-587f-4929-8062-a055fb966828.png)  
+
+<br>
+
+## 접근
+
+API에 요청할때 권한 정보를 함께 보내서 권한에 맞는 스키마를 내려받는것이 이상적이라고 생각합니다.  
+만약 그럴 수 없다는 가정하에 reduce 함수를 사용해서 유저 권한으로 볼 수 있는 메뉴만 담은 새로운 데이터 컬렉션을 반환하는 방법을 생각해보았습니다.  
+권한이 있는 하위 카테고리를 filter로 가려냅니다. 두 카테고리 계층이 권한을 확인하기 위해서 `checkAuthority` 메서드에 의존합니다.  
+반복문이 중첩되지만 처리하는 양이 고작 메뉴이기 때문에 가독성이 더 중요하다고 생각했습니다. 그래서 더 좋은 방법을 고민중입니다.  
+
+```javascript
+methods: {
+  filterAccessibleMenus(menuItems) {
+    return menuItems.reduce((acc, item) => {
+      if (!item.allow || !this.checkAuthority(item.allow)) return acc;
+      let allowedSubMenus;
+      if (item.children) {
+        allowedSubMenus = item.children.filter((child) => {
+          if (!child.allow) return true;
+          return this.checkAuthority(child.allow);
+        });
+      }
+      acc.push({ ...item, children: allowedSubMenus || [] });
+      return acc;
+    }, []);
+  },
+  checkAuthority(allowList) {
+    return allowList.some((allow) => this.auths.indexOf(allow) > -1);
+  },
 ```
+
