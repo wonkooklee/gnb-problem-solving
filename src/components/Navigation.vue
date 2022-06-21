@@ -3,14 +3,16 @@
     <div>
       <h2>{{ currentCategoryTitle }}</h2>
     </div>
-    <ul>
+    <ul class="depth-1">
       <li v-for="(menu, idx) in menuItems" :key="idx">
         <button @click="setCurrentMenu(menu.id)">{{ menu.title }}</button>
       </li>
     </ul>
-    <ul v-if="currentSubMenus && currentSubMenus.length">
+    <ul v-if="currentSubMenus && currentSubMenus.length" class="depth-2">
       <li v-for="(subMenu, idx) in currentSubMenus" :key="idx">
-        <button>{{ subMenu.title }}</button>
+        <router-link v-bind:to="subMenu.route">
+          <button>{{ subMenu.title }}</button>
+        </router-link>
       </li>
     </ul>
   </nav>
@@ -23,7 +25,7 @@ export default {
   data() {
     return {
       menuItems: [],
-      auths: ["운영자"],
+      auths: ["개발자", "운영자"],
       currentMenu: "",
       currentCategoryTitle: "",
     };
@@ -97,12 +99,30 @@ nav {
     padding: 10px 0;
     border-top: 1px solid white;
 
-    button {
-      color: #fff;
-      font-size: 20px;
-      border: none;
-      background: none;
-      cursor: pointer;
+    li {
+      flex-shrink: 0;
+
+      button {
+        color: #fff;
+        font-size: 20px;
+        border: none;
+        background: none;
+        cursor: pointer;
+      }
+    }
+    &.depth-1 {
+      li {
+        button {
+          font-size: 20px;
+        }
+      }
+    }
+    &.depth-2 {
+      li {
+        button {
+          font-size: 16px;
+        }
+      }
     }
   }
 }

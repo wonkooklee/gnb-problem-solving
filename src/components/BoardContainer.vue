@@ -1,12 +1,17 @@
 <template>
-  <div class="board">
-    <router-view></router-view>
+  <div class="board-container">
+    <router-view />
   </div>
 </template>
 
 <script>
 export default {
-  name: "BoardC",
+  data() {
+    return {
+      boardId: this.$route.params.id,
+    };
+  },
+  name: "BoardContainer",
 };
 </script>
 

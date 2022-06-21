@@ -5,21 +5,21 @@ export default [
     route: "",
     children: [
       {
-        title: "일상",
+        title: "개발자일상",
         route: {
-          name: "BoardsBoard",
+          name: "Boards",
           params: {
-            boardId: "KMDForest",
+            id: "KMDForest",
           },
         },
         allow: ["관리자", "운영자", "개발자"],
       },
       {
-        title: "일상",
+        title: "디자이너일상",
         route: {
-          name: "BoardsBoard",
+          name: "Boards",
           params: {
-            boardId: "KMUForest",
+            id: "KMUForest",
           },
         },
         allow: ["관리자", "운영자", "디자이너"],
@@ -27,9 +27,9 @@ export default [
       {
         title: "개발바닥",
         route: {
-          name: "BoardsBoard",
+          name: "Boards",
           params: {
-            boardId: "KMSForest",
+            id: "KMSForest",
           },
         },
         allow: ["관리자", "운영자", "개발자"],
@@ -37,36 +37,36 @@ export default [
       {
         title: "자유게시판",
         route: {
-          name: "BoardsBoard",
+          name: "Boards",
           params: {
-            boardId: "AndroMedi",
+            id: "AndroMedi",
           },
         },
       },
       {
         title: "정치",
         route: {
-          name: "BoardsBoard",
+          name: "Boards",
           params: {
-            boardId: "PEForest",
+            id: "PEForest",
           },
         },
       },
       {
         title: "이벤트",
         route: {
-          name: "BoardsBoard",
+          name: "Boards",
           params: {
-            boardId: "AlarmForest",
+            id: "AlarmForest",
           },
         },
       },
       {
         title: "취준생",
         route: {
-          name: "BoardsBoard",
+          name: "Boards",
           params: {
-            boardId: "KMJForest",
+            id: "KMJForest",
           },
         },
         allow: ["관리자", "운영자", "개발자", "디자이너", "기획자"],
@@ -82,9 +82,9 @@ export default [
       {
         title: "강의",
         route: {
-          name: "BoardsBoard",
+          name: "Boards",
           params: {
-            boardId: "KMDForest",
+            id: "KMDForest",
           },
         },
         allow: ["관리자", "운영자", "개발자"],
@@ -92,9 +92,9 @@ export default [
       {
         title: "코드리뷰",
         route: {
-          name: "BoardsBoard",
+          name: "Boards",
           params: {
-            boardId: "KMUForest",
+            id: "KMUForest",
           },
         },
         allow: ["관리자", "운영자", "디자이너"],
@@ -102,9 +102,9 @@ export default [
       {
         title: "디자인리뷰",
         route: {
-          name: "BoardsBoard",
+          name: "Boards",
           params: {
-            boardId: "KMSForest",
+            id: "KMSForest",
           },
         },
         allow: ["관리자", "운영자", "개발자", "디자이너"],
